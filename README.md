@@ -1,2 +1,3 @@
 # AlgosInC-
-AlgoDS in C#
+
+Data Structures and alogrithsm written in c#
