@@ -11,8 +11,18 @@ namespace AlgoAllInOne
     {
         static void Main(string[] args)
         {
-            TwoSum calculator = new TwoSum(new int[]{ 2, 3, 4, 5, 7, 1, 12, 15, 6 }, 20);
-            int[] output = calculator.basicMethod();
+            Triggers trigger = new Triggers();
+           // trigger.calculateTwoSum();
+        }
+
+    }
+    class Triggers
+    {
+        public void calculateTwoSum()
+        {
+            TwoSum calculator = new TwoSum(new int[] { 3, 2, 4 }, 6);
+            // int[] output = calculator.basicMethod();
+            int[] output = calculator.aBetterApproach();
             Console.WriteLine(output[0]);
             Console.WriteLine(output[1]);
         }

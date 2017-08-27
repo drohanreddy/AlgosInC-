@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,8 @@ namespace AlgoAllInOne.Algos.Array
             _target = target;
         }
 
+
+        #region approach  
         /// <summary>
         /// Basic method using two for loops. Not optimum
         /// </summary>
@@ -39,11 +42,57 @@ namespace AlgoAllInOne.Algos.Array
                             output[0] = j;
                             output[1] = i;
                         }
-                       
+                        return output;
                     }
                 }
             }
             return output;
         }
+
+        /// <summary>
+        ///  Uses hashtable to process the array
+        /// </summary>
+        /// <returns>>An array of indices</returns>
+        public int[] aBetterApproach()
+        {
+            int[] output = new int[2];
+            Hashtable memoized = new Hashtable();
+            for (int i = 0; i < _arr.Length; i++)
+            {
+                int diff = _target - _arr[i];
+                if (!memoized.ContainsKey(diff))
+                {
+                    memoized.Add(diff, i);
+                }
+                else
+                {
+                    memoized[diff] = i;
+                }
+            }
+            for (int i = 0; i < _arr.Length; i++)
+            {
+                if (memoized.ContainsKey(_arr[i]))
+                {
+                    int j = (int)memoized[_arr[i]];
+                    if (i != j)
+                    {
+                        if (i < j)
+                        {
+                            output[0] = i;
+                            output[1] = j;
+                        }
+                        else
+                        {
+                            output[0] = j;
+                            output[1] = i;
+                        }
+                        return output;
+                    }
+
+                }
+            }
+            return output;
+        }
+        #endregion
     }
 }
