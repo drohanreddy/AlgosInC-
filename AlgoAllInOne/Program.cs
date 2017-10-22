@@ -12,7 +12,10 @@ namespace AlgoAllInOne
         static void Main(string[] args)
         {
             Triggers trigger = new Triggers();
-           // trigger.calculateTwoSum();
+            // trigger.calculateTwoSum();
+            //  bool res =  Strings.isPermution("acefdb", "ffbacd");
+            // string urlify = Strings.urlify("Mr John Smith    ", 13);
+            bool palindrome = Strings.palindromePermution("Tact Coa");
         }
 
     }
