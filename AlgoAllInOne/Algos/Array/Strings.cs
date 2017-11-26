@@ -119,33 +119,94 @@ namespace AlgoAllInOne.Algos.Array
 
         public static bool OneAway(string one, string two)
         {
-            Dictionary<char, int> oneDict = new Dictionary<char, int>();
-            Dictionary<char, int> twoDict = new Dictionary<char, int>();
-            int operations = 0;
-            foreach (char item in one)
+            int len1 = one.Length;
+            int len2 = two.Length;
+            bool str2ls = len1 > len2;
+            int diff = str2ls ? len1 - len2 : len2 - len1;
+            if (diff <=1 )
             {
-                if (oneDict.ContainsKey(item))
+                if (str2ls)
                 {
-                    oneDict[item]++;
+                    int changes = 0;
+                    int j = 0;
+                    for (int i = 0; i < len2; i++)
+                    {
+                        if (one[i] != two[j])
+                        {
+                            changes++;
+                            if (changes > 1)
+                            {
+                                return false;
+                            }
+                        }
+                        else
+                        {
+                            j++;
+                        }
+                    }
                 }
                 else
                 {
-                    oneDict.Add(item, 1);
+                    int changes = 0;
+                    int j = 0;
+                    for (int i = 0; i < len1; i++)
+                    {
+                        if (two[i] != one[j])
+                        {
+                            changes++;
+                            if (changes > 1)
+                            {
+                                return false;
+                            }
+                        }
+                        else
+                        {
+                            j++;
+                        }
+                    }
                 }
-            }
-            foreach (char item in two)
-            {
-                if (twoDict.ContainsKey(item))
-                {
-                    twoDict[item]++;
-                }
-                else
-                {
-                    twoDict.Add(item, 1);
-                }
-            }
 
+            }
+            else
+            {
+                return false;
+            }
             return true;
+        }
+
+        public static string Compress(string s)
+        {
+            int len = s.Length;
+            StringBuilder cmrs = new StringBuilder();
+            int i = 0;
+            while (i<len)
+            {
+                char tChar = s[i];
+                int tCount = 1;
+                for (int j = i+1; j < len; j++)
+                {
+                    if (tChar == s[j])
+                    {
+                        i = j;
+                        tCount++;
+                    }
+                    else
+                    {
+                        cmrs.Append(tChar);
+                        cmrs.Append(tCount);
+                        i++;
+                        break;
+                    }
+                }
+                if (i == len - 1)
+                {
+                    cmrs.Append(tChar);
+                    cmrs.Append(tCount);
+                    i++;
+                }
+            }
+            string compressed = cmrs.ToString();
+            return compressed.Length < len? compressed: s;
         }
     }
 }
