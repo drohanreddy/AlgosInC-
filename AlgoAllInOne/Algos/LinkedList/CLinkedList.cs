@@ -128,5 +128,33 @@ namespace AlgoAllInOne.Algos.LinkedList
                 prev.next = null;
             }
         }
+
+        public int KThLastElement(int k)
+        {
+            int hop = 0;
+            Node l = root;
+            Node x = root;
+            while (l.next != null)
+            {
+                l = l.next;
+                hop++;
+                if (hop>=k)
+                {
+                    x = x.next;
+                }
+            }
+            if (x==root)
+            {
+                return -1;
+            }
+            return x.Data;
+
+        }
+
+        public Node GetRoot()
+        {
+            return root;
+        }
+
     }
 }

@@ -9,19 +9,21 @@ namespace AlgoAllInOne.Algos.Helper
 {
     public static class Wrapper
     {
-        public static void MethodCall<T, K>(Func<T,K> myFunc, T c){
+        public static K MethodCall<T, K>(Func<T,K> myFunc, T c){
             try
             {
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
-                myFunc(c);
+                var outp = myFunc(c);
                 sw.Stop();
                 Console.WriteLine($"method {myFunc.Method.Name} executed with time {sw.Elapsed}");
+                return outp;
             }
             catch (Exception ex)
             {
 
                 Console.WriteLine(ex.ToString());
+                return default(K);
             }
         }
         public static T MethodCall<T>(Func<T> myFunc)
