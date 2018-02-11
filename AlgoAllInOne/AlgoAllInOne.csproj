@@ -47,6 +47,7 @@
     <Compile Include="Algos\Helper\Wrapper.cs" />
     <Compile Include="Algos\LinkedList\Node.cs" />
     <Compile Include="Algos\LinkedList\CLinkedList.cs" />
+    <Compile Include="Algos\Stack and Queue\Stack.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
