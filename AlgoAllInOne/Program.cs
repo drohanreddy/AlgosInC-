@@ -1,4 +1,5 @@
 ﻿using AlgoAllInOne.Algos.Array;
+using AlgoAllInOne.Algos.Graphs;
 using AlgoAllInOne.Algos.Helper;
 using AlgoAllInOne.Algos.LinkedList;
 using AlgoAllInOne.Algos.Stack_and_Queue;
@@ -42,22 +43,30 @@ namespace AlgoAllInOne
             #endregion
 
             #region stack
-            CustomStack s = new CustomStack(10);
-            s.printStack();
-            s.GetMinimum();
-            s.push(9);
-            s.push(11);
-            s.push(14);
-            s.push(3);
-            s.GetMinimum();
-            s.pop();
-            s.pop();
-            s.push(3);
-            s.push(3);
-            s.GetMinimum();
-            s.pop();
-            s.printStack();
+
             #endregion
+
+            #region Graphs
+            //Graph g = new Graph();
+            //var node1 = Wrapper.MethodCall<GraphNode>(() => g.BFS(3));
+            //var node2 = Wrapper.MethodCall<GraphNode>(() => g.FindByDFS(3));
+            #endregion
+
+            #region tree
+            Tree tree = new Tree();
+            //int[] a = { 1, 2, 3, 4, 5 };
+            //tree.CreateTreeFrom(a);
+            tree.insertIntoTree(10);
+            tree.insertIntoTree(9);
+            tree.insertIntoTree(8);
+            tree.insertIntoTree(7);
+            tree.insertIntoTree(5);
+            tree.insertIntoTree(18);
+            tree.insertIntoTree(17);
+            tree.insertIntoTree(15);
+            //     var dict = tree.GetListsFromTree();
+            var b = tree.isBalancedTree();
+#endregion  
 
         }
 
@@ -73,6 +82,8 @@ namespace AlgoAllInOne
             Console.WriteLine(output[1]);
         }
 
+
+        #region linkedlist
         public CLinkedList LinkedList()
         {
             CLinkedList c = new CLinkedList();
@@ -219,6 +230,43 @@ namespace AlgoAllInOne
                 return false;
             }
         }
+        #endregion
+        #region stack
+        public void StackMin()
+        {
+            CustomStack s = new CustomStack(10);
+            s.printStack();
+            s.GetMinimum();
+            s.push(9);
+            s.push(11);
+            s.push(14);
+            s.push(3);
+            s.GetMinimum();
+            s.pop();
+            s.pop();
+            s.push(3);
+            s.push(3);
+            s.GetMinimum();
+            s.pop();
+            s.printStack();
+        }
+        public void SetOfStacks()
+        {
+            SetOfStacks setOfStacks = new SetOfStacks(3);
+            setOfStacks.push(10);
+            setOfStacks.push(13);
+            setOfStacks.push(9);
+            setOfStacks.push(5);
+            setOfStacks.push(11);
+            setOfStacks.push(2);
+            setOfStacks.push(4);
+            setOfStacks.printListOfStacks();
+            setOfStacks.pop();
+            setOfStacks.pop();
+            setOfStacks.pop();
+            setOfStacks.printListOfStacks();
+        }
+        #endregion
 
     }
 }

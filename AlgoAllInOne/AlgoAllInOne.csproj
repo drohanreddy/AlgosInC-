@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="Algos\Array\Strings.cs" />
     <Compile Include="Algos\Array\TwoSum.cs" />
+    <Compile Include="Algos\Graphs\Graph.cs" />
+    <Compile Include="Algos\Graphs\Tree.cs" />
     <Compile Include="Algos\Helper\Wrapper.cs" />
     <Compile Include="Algos\LinkedList\Node.cs" />
     <Compile Include="Algos\LinkedList\CLinkedList.cs" />

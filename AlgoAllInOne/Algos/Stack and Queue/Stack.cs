@@ -13,6 +13,7 @@ namespace AlgoAllInOne.Algos.Stack_and_Queue
         public CustomStack(int data)
         {
             StackNode n = new StackNode(data);
+            n.Size = 1;
             top = n;
             minimum = n;
         }
@@ -35,8 +36,9 @@ namespace AlgoAllInOne.Algos.Stack_and_Queue
 
                 }
                 node.next = top;
+                node.Size = top.Size + 1;
                 top = node;
-                
+
             }
         }
         public void pop()
@@ -47,7 +49,7 @@ namespace AlgoAllInOne.Algos.Stack_and_Queue
             }
             else
             {
-                Console.WriteLine("popped item is --"+top.Data);
+                Console.WriteLine("popped item is --" + top.Data);
                 if (top.Data == minimum.Data)
                 {
                     minimum = minimum.next;
@@ -59,9 +61,9 @@ namespace AlgoAllInOne.Algos.Stack_and_Queue
         {
             if (top != null)
             {
-                Console.WriteLine("minimum is "+minimum.Data);
+                Console.WriteLine("minimum is " + minimum.Data);
             }
-            
+
         }
         public void printStack()
         {
@@ -87,10 +89,71 @@ namespace AlgoAllInOne.Algos.Stack_and_Queue
     {
         public int Data { get; set; }
         public StackNode next { get; set; }
+        public int Size { get; set; }
         public StackNode(int data)
         {
             this.Data = data;
             this.next = null;
+            this.Size = 0;
+        }
+    }
+
+    public class SetOfStacks
+    {
+        public int Threshold { get; set; }
+        List<CustomStack> listOfStacks { get; set; }
+        public SetOfStacks(int threshold)
+        {
+            this.Threshold = threshold;
+            listOfStacks = null;
+        }
+        public void push(int data)
+        {
+            if (listOfStacks == null && listOfStacks.Count > 0)
+            {
+                CustomStack s = new CustomStack(data);
+                listOfStacks = new List<CustomStack>();
+                listOfStacks.Add(s);
+            }
+            else
+            {
+                bool stackFound = false;
+                var lastStack = listOfStacks[listOfStacks.Count - 1];
+                var top = lastStack.top;
+                if (lastStack.top.Size < this.Threshold)
+                {
+                    lastStack.push(data);
+                }
+                else
+                {
+                    listOfStacks.Add(new CustomStack(data));
+                }
+            }
+        }
+        public void pop()
+        {
+            if (listOfStacks != null)
+            {
+                var lastStack = listOfStacks[listOfStacks.Count - 1];
+                lastStack.top.Size = lastStack.top.Size - 1;
+               
+                
+                if (lastStack.top.Size<1)
+                {
+                    listOfStacks.Remove(lastStack);
+                }
+                else
+                {
+                    lastStack.top = lastStack.top.next;
+                }
+            }
+        }
+        public void printListOfStacks()
+        {
+            foreach (var item in this.listOfStacks)
+            {
+                item.printStack();
+            }
         }
     }
 }
